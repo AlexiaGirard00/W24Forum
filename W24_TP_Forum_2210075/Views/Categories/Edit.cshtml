@@ -1,0 +1,49 @@
+﻿@model W24_TP_Forum_2210075.Models.Category
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Categories" asp-action="Details" asp-route-id="@Model?.CatId" class="btn btn-primary mt-5">Back to Details</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CatId" />
+                <div class="form-group mb-3">
+                    <label asp-for="CatNom" class="control-label mb-2">Category Name</label>
+                    <input asp-for="CatNom" class="form-control input" />
+                    <span asp-validation-for="CatNom" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CatDesc" class="control-label mb-2">Category Description</label>
+                    <input asp-for="CatDesc" class="form-control input" />
+                    <span asp-validation-for="CatDesc" class="text-danger"></span>
+                </div>
+
+                <input hidden asp-for="CatActif" class="form-control input" />
+
+                <div class="form-group mb-4">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

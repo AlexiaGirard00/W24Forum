@@ -1,0 +1,48 @@
+﻿@model W24_TP_Forum_2210075.Models.Category
+
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-5">Back to Categories</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+            <dl class="row">
+                <dt class="col-sm-2 mb-2">
+                    Name
+                </dt>
+                <dd class="col-sm-10 mb-2">
+                    @Model.CatNom
+                </dd>
+                <dt class="col-sm-2 mb-2">
+                    Description
+                </dt>
+                <dd class="col-sm-10 mb-2">
+                    @Html.Raw(Model.CatDesc)
+                </dd>
+                <dt class="col-sm-2 mb-2">
+                    Active
+                </dt>
+                <dd class="col-sm-10 mb-2">
+                    @Model.CatActif
+                </dd>
+            </dl>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.CatId" class="btn btn-primary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@Model?.CatId" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

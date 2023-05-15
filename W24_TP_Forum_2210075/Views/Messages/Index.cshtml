@@ -1,0 +1,118 @@
+﻿@using System.Security.Claims
+@using W24_TP_Forum_2210075.Tools
+@model PaginatedList<W24_TP_Forum_2210075.Models.Message>
+
+
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">Messages</h1>
+            </div>
+            <div>
+                <a class="btn btn-primary mt-5" asp-controller="Sujets" asp-action="ShowResult" asp-route-cid="@ViewData["CatId"]">Back To Subject</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-primary mt-3" asp-action="Create" asp-route-sid="@ViewData["SujetId"]" asp-route-cid="@ViewData["CatId"]">Create New Message</a>
+
+                    }
+                </div>
+                <form asp-action="index" class="mt-3">
+                    <div class="d-flex">
+                        <label class="me-3">Per page : </label>
+                        <select id="combobox" class="form-control" style="width:100px" onchange="return GetSelectedValue()">
+                            <option value="5">5</option>
+                            <option value="15">15</option>
+                            <option value="25">25</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="card-msg">
+            @if (Model.Count() == 0)
+            {
+                <p class="d-flex justify-content-center">
+                    There is no answer at the moment.
+                </p>
+            }
+            else
+            {
+                @foreach (var item in Model.OrderBy(i => i.MsgDate))
+                {
+
+                    <div class="card mt-5 mb-5">
+                        <div class="card-header d-flex justify-content-between">
+                            <div>
+                                @item.User.UserName
+                            </div>
+                            <div>
+                                @item.MsgDate
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Message:</h5>
+                            <p class="card-text">@Html.Raw(item.MsgTexte)</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-end">
+                                @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == item.UserId || User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-primary" asp-action="Edit" asp-route-cid="@ViewData["CatId"]" asp-route-mid="@item.MsgId" asp-route-sid="@item.SujetId">Edit</a>
+                                    <a class="btn btn-primary" asp-action="Delete" asp-route-cid="@ViewData["CatId"]" asp-route-id="@item.MsgId" asp-route-sid="@item.SujetId">Delete</a>
+                                }
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-primary" asp-action="Details" asp-route-cid="@ViewData["CatId"]" asp-route-id="@item.MsgId" asp-route-sid="@item.SujetId">Details</a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+
+
+        @if (Model.Count() != 0)
+        {
+            <div style="width:fit-content">
+                @*Navigation*@
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                @*First*@
+                <a class="btn btn-primary @prevDisabled" asp-controller="Messages" asp-action="Index" asp-route-pageIndex="1">First</a>
+
+
+                @*Prev*@
+                <a class="btn btn-primary @prevDisabled" asp-controller="Messages" asp-action="Index" asp-route-pageIndex="@(Model.PageIndex - 1)">Prev</a>
+
+
+                @*Next*@
+                <a class="btn btn-primary @nextDisabled" asp-controller="Messages" asp-action="Index" asp-route-pageIndex="@(Model.PageIndex + 1)">Next</a>
+
+                @*Last*@
+                <a class="btn btn-primary @nextDisabled" asp-controller="Messages" asp-action="Index" asp-route-pageIndex="@(Model.TotalPages)">Last</a>
+
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

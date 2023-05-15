@@ -1,0 +1,47 @@
+﻿@model W24_TP_Forum_2210075.Models.Category
+
+@{
+    ViewData["Title"] = "New Category";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Home" asp-action="index" class="btn btn-primary mt-5">Back to Categories</a>
+            </div>
+        </div>
+        <hr />
+
+        <div class="mt-4">
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <label asp-for="CatNom" class="control-label mb-2">Category Name</label>
+                    <input asp-for="CatNom" class="form-control input" />
+                    <span asp-validation-for="CatNom" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CatDesc" class="control-label mb-2">Category Description</label>
+                    <textarea asp-for="CatDesc" class="form-control input msg-textarea"></textarea>
+                    <span asp-validation-for="CatDesc" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

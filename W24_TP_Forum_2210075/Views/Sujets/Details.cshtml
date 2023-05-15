@@ -1,0 +1,68 @@
+﻿@model W24_TP_Forum_2210075.Models.Sujet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Sujets" asp-action="ShowResult" asp-route-cid="@ViewData["CatId"]" class="btn btn-primary mt-5">Back to Subject</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+            <div class="">
+
+                <dl class="row mb-3">
+                    <dt class="col-sm-2">
+                        User Name
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.User.UserName
+                    </dd>
+                    <dt class="col-sm-2">
+                        Subject
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetNom
+                    </dd>
+                    <dt class="col-sm-2">
+                        Date
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetDate
+                    </dd>
+                    <dt class="col-sm-2">
+                        View
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetView
+                    </dd>
+                    <dt class="col-sm-2">
+                        Active
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetActif
+                    </dd>
+                    <dt class="col-sm-2">
+                        Category
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.Cat.CatNom
+                    </dd>
+                </dl>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model?.SujetId" class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

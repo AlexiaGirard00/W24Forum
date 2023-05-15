@@ -1,0 +1,62 @@
+﻿@model IEnumerable<W24_TP_Forum_2210075.ViewModels.MyUser>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="container mt-5 pb-5">
+    <div class="d-flex flex-row-reverse mb-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        Last Subject
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Last Message
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.UserName
+                        </td>
+                        <td>
+                            @item.NbSujet
+                        </td>
+                        <td>
+                            @foreach (var s in item.LastSubject)
+                            {
+                                @s.SujetDate
+                                ;
+                            }
+                        </td>
+                        <td>
+                            @item.NbMessage
+                        </td>
+                        <td>
+                            @foreach (var m in item.LastMessage)
+                            {
+                                @m.MsgDate
+                                ;
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

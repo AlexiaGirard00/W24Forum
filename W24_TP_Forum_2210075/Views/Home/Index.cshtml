@@ -1,0 +1,53 @@
+﻿@model IEnumerable<W24_TP_Forum_2210075.ViewModels.HomeCat>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="">
+    <div>
+        <div class="">
+            <img src="~/assets/img/Tiny-House.jpg" alt="Image accueil" id="img-accueil" />
+        </div>
+    </div>
+
+    <div class="container mt-5 pb-5">
+        <div class="mb-3">
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="btn btn-primary" asp-controller="Categories" asp-action="Create">Create New Categories</a>
+            }
+        </div>
+        <div class="row justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="mt-4 col-4 d-flex justify-content-center">
+                    <div class="card cat-desc">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">@item.CategoryName</h4>
+                            <p class="card-text ">@Html.Raw(item.Description)</p>
+                            <h6 class="card-subtitle mb-2"><b>Related topics: @item.SujetsCount</b></h6>
+                            <div style="height:200px">
+                                @foreach (var s in item.SujetsListe)
+                                {
+                                    <div class="mt-2">@s.SujetNom</div>
+                                }
+                            </div>
+
+                            <div class="">
+                                <a class="btn btn-primary" asp-controller="Sujets" asp-action="ShowResult" asp-route-cid="@item.CategoryId">See More</a>
+                                <a class="btn btn-primary" asp-controller="Categories" asp-action="Details" asp-route-id="@item.CategoryId">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

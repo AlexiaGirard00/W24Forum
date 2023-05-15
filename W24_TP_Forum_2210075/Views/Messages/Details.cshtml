@@ -1,0 +1,61 @@
+﻿@model W24_TP_Forum_2210075.Models.Message
+
+@{
+    ViewData["Title"] = "Message Details";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Messages" asp-action="Index" asp-route-cid="@ViewData["CatId"]" asp-route-sid="@ViewData["sid"]" class="btn btn-primary mt-5">Back to Messages</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+            <div>
+                <dl class="row">
+                    <dt class="col-sm-2 mb-3">
+                        User Name
+                    </dt>
+                    <dd class="col-sm-10 mb-3">
+                        @Model.User.UserName
+                    </dd>
+                    <dt class="col-sm-2 mb-3">
+                        Active
+                    </dt>
+                    <dd class="col-sm-10 mb-3">
+                        @Model.MsgActif
+                    </dd>
+                    <dt class="col-sm-2 mb-3">
+                        Message
+                    </dt>
+                    <dd class="col-sm-10 mb-3">
+                        @Html.Raw(Model.MsgTexte)
+                    </dd>
+                    <dt class="col-sm-2 mb-3">
+                        Date
+                    </dt>
+                    <dd class="col-sm-10 mb-3">
+                        @Model.MsgDate
+                    </dd>
+                    <dt class="col-sm-2 mb-3">
+                        Subject
+                    </dt>
+                    <dd class="col-sm-10 mb-3">
+                        @Model.Sujet.SujetNom
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-mid="@Model.MsgId" asp-route-sid="@Model.SujetId" asp-route-cid="@ViewData["CatId"]" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

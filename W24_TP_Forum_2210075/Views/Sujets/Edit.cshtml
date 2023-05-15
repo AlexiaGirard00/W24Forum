@@ -1,0 +1,65 @@
+﻿@model W24_TP_Forum_2210075.Models.Sujet
+
+@{
+    ViewData["Title"] = "Edit Subject";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Sujets" asp-action="ShowResult" asp-route-cid="@ViewData["CatId"]" class="btn btn-primary mt-5">Back to Subject</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input hidden asp-for="SujetId" />
+
+                    <input hidden asp-for="CatId" />
+
+                    <input hidden asp-for="UserId" />
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Cat.CatNom" class="control-label">Category Name</label>
+                        <select asp-for="Cat.CatNom" class="form-control" asp-items="ViewBag.CatNom"></select>
+                        <span asp-validation-for="Cat.CatNom" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="User.UserName" class="control-label">User Name</label>
+                        <input asp-for="User.UserName" class="form-control input" />
+                        <span asp-validation-for="User.UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="SujetNom" class="control-label">Subject</label>
+                        <input asp-for="SujetNom" class="form-control input" />
+                        <span asp-validation-for="SujetNom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="SujetDate" class="control-label">Date</label>
+                        <input readonly asp-for="SujetDate" class="form-control input" />
+                        <span asp-validation-for="SujetDate" class="text-danger"></span>
+                    </div>
+
+                    <input hidden asp-for="SujetActif" class="form-control" />
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

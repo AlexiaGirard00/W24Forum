@@ -1,0 +1,67 @@
+﻿@model W24_TP_Forum_2210075.Models.Sujet
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h4 class="mt-5">Are you sure you want to delete this subject ?</h4>
+            </div>
+            <div>
+                <a asp-controller="Sujets" asp-action="ShowResult" asp-route-cid="@ViewData["CatId"]" class="btn btn-primary mt-5">Back to Subject</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        User Name
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.UserId
+                    </dd>
+                    <dt class="col-sm-2">
+                        Subject
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetNom
+                    </dd>
+                    <dt class="col-sm-2">
+                        Date
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetDate
+                    </dd>
+                    <dt class="col-sm-2">
+                        View
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetView
+                    </dd>
+                    <dt class="col-sm-2">
+                        Active
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.SujetActif
+                    </dd>
+                    <dt class="col-sm-2">
+                        Category
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.Cat.CatNom
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="SujetId" />
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+</div>
+
+
+

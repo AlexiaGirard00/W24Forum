@@ -1,0 +1,52 @@
+﻿@using System.Security.Claims
+@model W24_TP_Forum_2210075.Models.Message
+
+@{
+    ViewData["Title"] = "Create Message";
+}
+
+<div class="justify-content-center d-flex">
+    <div class="container" style="width:1000px">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="mt-5">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                <a asp-controller="Messages" asp-action="Index" asp-route-sid="@ViewData["SujetId"]" asp-route-cid="@ViewData["CatId"]" class="btn btn-primary mt-5">Back to Messages</a>
+            </div>
+        </div>
+        <hr />
+        <div class="mt-4">
+            <form asp-action="Create">
+
+                <input hidden asp-for="SujetId" value="@ViewData["SujetId"]" />
+
+                <input hidden asp-for="UserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+
+                <input hidden asp-for="MsgDate" value=@DateTime.Now />
+
+                <input hidden asp-for="MsgActif" value="True" />
+
+                <input hidden asp-for="User.UserName" value="@User.FindFirstValue(ClaimTypes.Name)" />
+
+                <div class="form-group mb-3">
+                    <textarea asp-for="MsgTexte" class="form-control input msg-textarea"></textarea>
+                    <span asp-validation-for="MsgTexte" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

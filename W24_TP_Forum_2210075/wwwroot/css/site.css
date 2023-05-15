@@ -1,0 +1,98 @@
+
+
+body {
+    width: 100%;
+    margin: 0 auto;
+}
+
+dt {
+    margin-bottom:10px;
+}
+
+a {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #688363 !important;
+        text-decoration: none;
+    }
+
+.btn-logout {
+    color: #fff !important;
+    background-color: black;
+    font-size: 12px;
+}
+    .btn-logout:hover {
+        color: #688363 !important;
+    }
+
+.cat-desc {
+    height:400px;
+    width:450px;
+}
+
+
+.btn-primary {
+    color: #fff !important;
+    background-color: #819C7B!important;
+    border-color: #7B9476 !important;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+        color: #fff !important;
+        background-color: #688363 !important;
+        border-color: #61795D !important;
+    }
+
+
+.input {
+    width: 100%;
+}
+
+
+.btn-new-sub {
+    display: flex;
+    justify-content: end;
+}
+
+.btn-to-start {
+    display: flex;
+    justify-content: start;
+}
+
+.btn-to-end {
+    display: flex;
+    justify-content: end;
+}
+
+.btn-create-sub {
+    color: #688363 !important;
+    background-color: #fff;
+    border-color: #688363 !important;
+}
+    .btn-create-sub:hover {
+        color: #40503D !important;
+        background-color: #fff;
+        border-color: #40503D !important;
+    }
+
+.card-msg {
+    width: 1000px;
+}
+
+.msg-textarea {
+    height: 300px;
+    width: 700px;
+    resize: none;
+}
+
+#img-accueil {
+    width: 100%;
+}
+
+
+
+
+
